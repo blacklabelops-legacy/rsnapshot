@@ -15,6 +15,7 @@ RUN yum install -y \
     cp /etc/rsnapshot.conf /opt/rsnapshot/rsnapshot.conf
 
 COPY imagescripts/docker-entrypoint.sh /opt/rsnapshot/docker-entrypoint.sh
+COPY imagescripts/rsnapshot.sh /opt/rsnapshot/rsnapshot.sh
 ENTRYPOINT ["/opt/rsnapshot/docker-entrypoint.sh"]
 VOLUME ["/snapshots"]
 CMD ["rsnapshot"]

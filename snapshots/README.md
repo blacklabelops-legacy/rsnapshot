@@ -1,0 +1,1 @@
+Example Snapshot directory.

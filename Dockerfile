@@ -14,6 +14,9 @@ RUN yum install -y \
     mkdir /opt/rsnapshot && \
     cp /etc/rsnapshot.conf /opt/rsnapshot/rsnapshot.conf
 
+ENV BACKUP_INTERVAL=
+ENV BACKUP_DIRECTORIES=
+
 COPY imagescripts/docker-entrypoint.sh /opt/rsnapshot/docker-entrypoint.sh
 COPY imagescripts/rsnapshot.sh /opt/rsnapshot/rsnapshot.sh
 ENTRYPOINT ["/opt/rsnapshot/docker-entrypoint.sh"]

@@ -5,6 +5,8 @@ This container offers rsnapshot functionality dockerized, parameterized and demo
 any arbitrary amount of containers and directories. Just hook up some containers and define your
 backup volumes.
 
+The one-shot backup container for immediate backups without cron schedule can be found here: [blacklabelops/rsnapshot](../README.md)
+
 # Make It Short
 
 In short, this container can backup volumes and manage incremental backups of running containers.

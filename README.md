@@ -9,6 +9,8 @@ rotation of daily, weekly and monthly snapshots. This image is a the base contai
 rsnapshot functionality dockerized and parameterized. I am working
 on a cron version that fully manages backups of cloud containers.
 
+The cron scheduled backup container can be found here: [blacklabelops/rsnapshotd](./rsnapshot-cron/README.md)
+
 # Make It Short
 
 In short, this container can backup volumes and manage incremental backups of running containers.

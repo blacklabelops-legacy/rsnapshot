@@ -1,0 +1,14 @@
+machine:
+  services:
+    - docker
+
+dependencies:
+  override:
+    - docker version
+    - docker info
+    - docker build -t="blacklabelops/rsnapshot" .
+
+test:
+  override:
+    - docker run -d -p 8090:8080 --name jenkins_jenkins_1 blacklabelops/jenkins
+    - docker run -d --volumes-from jenkins_jenkins_1 -e "BACKUP_DIRECTORIES=/jenkins/ jenkins_jenkins_1/" blacklabelops/rsnapshot

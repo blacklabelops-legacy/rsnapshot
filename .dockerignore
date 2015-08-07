@@ -2,3 +2,6 @@
 snapshots
 scripts
 README.md
+.vagrant
+rsnapshot-cron/.vagrant
+rsnapshot-cron/snapshots

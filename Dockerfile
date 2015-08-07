@@ -16,6 +16,7 @@ RUN yum install -y \
 
 ENV BACKUP_INTERVAL=
 ENV BACKUP_DIRECTORIES=
+ENV DELAYED_START=
 
 COPY imagescripts/docker-entrypoint.sh /opt/rsnapshot/docker-entrypoint.sh
 COPY imagescripts/rsnapshot.sh /opt/rsnapshot/rsnapshot.sh

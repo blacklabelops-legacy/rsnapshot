@@ -1,0 +1,15 @@
+jenkins:
+  image: blacklabelops/jenkins
+  ports:
+    - "8090:8080"
+  volumes:
+    - /jenkins
+rsnapshot:
+  image: blacklabelops/rsnapshotd
+  volumes:
+    - ./scnapshots:/snapshots
+  volumes_from:
+    - jenkins
+  environment:
+    - 'BACKUP_DIRECTORIES=/jenkins/ jenkins/'
+    - 'DELAYED_START=40'

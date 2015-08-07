@@ -26,3 +26,7 @@ do
   echo -e backup'\t'$tab_dir >> /etc/rsnapshot.conf
 done
 IFS=$SAVEIFS
+
+if [ -n "${DELAYED_START}" ]; then
+  exec sleep ${DELAYED_START}
+fi

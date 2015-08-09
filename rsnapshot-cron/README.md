@@ -94,6 +94,54 @@ Described in [blacklabelops/rsnapshot](../README.md)
 
 Described in [blacklabelops/rsnapshot](../README.md)
 
+# Logging
+
+This container does not write a logfile by default. It's considered bad practise as logs
+should be accessed by the command `docker logs`. There are use case where you want to
+have additional log files, e.g. my use case is to relay log to Loggly [Loggly Homepage](https://www.loggly.com/).
+I have added a routine for logging and it's activated by defining a logfile.
+
+Environment Variable: LOG_FILE
+
+First start the Jenkins example master:
+
+~~~~
+docker run -d -p 8090:8080 --name jenkins_jenkins_1 blacklabelops/jenkins
+~~~~
+
+> The Jenkins container has a default docker volume under /jenkins
+
+Example for a separate volume with a logfile:
+
+~~~~
+$ docker run -d \
+  --name backupdemon \
+  --volumes-from jenkins_jenkins_1 \
+  -v $(pwd)/logs:/rsnapshotlogs \
+  -v $(pwd)/snapshots/:/snapshots \
+  -e "LOG_FILE=/rsnapshotlogs/rsnapshotd.log" \
+  -e "BACKUP_DIRECTORIES=/jenkins/ jenkins_jenkins_1/" \
+  -e "CRON_HOURLY=* * * * *" \
+  blacklabelops/rsnapshotd
+~~~~
+
+> You can watch the log by typing `cat ./logs/rsnapshotd.log`.
+
+Now lets hook up the container with my Loggly side-car container and relay the log to Loggly! The Full
+documentation of the loggly container can be found here: [blacklabelops/loggly](https://github.com/blacklabelops/fluentd/tree/master/fluentd-loggly)
+
+~~~~
+$ docker run -d \
+  --volumes-from backupdemon \
+  -e "LOGS_DIRECTORIES=/rsnapshotlogs" \
+	-e "LOGGLY_TOKEN=3ere-23kkke-23j3oj-mmkme-343" \
+  -e "LOGGLY_TAG=snapshotlog" \
+  --name rsnapshotloggly \
+  blacklabelops/loggly
+~~~~
+
+> Note: You need a valid Loggly Customer Key in order to log to Loggly.
+
 ## Vagrant
 
 Vagrant is fabulous tool for pulling and spinning up virtual machines like docker with containers. I can configure my development and test environment and simply pull it online. And so can you! Install Vagrant and Virtualbox and spin it up. Change into the project folder and build the project on the spot!

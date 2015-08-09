@@ -1,4 +1,7 @@
 .vagrant
 snapshots
+logs
 rsnapshot-cron/snapshots
 rsnapshot-cron/.vagrant
+rsnapshot-cron/logs
+*.log

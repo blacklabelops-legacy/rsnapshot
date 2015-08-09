@@ -44,8 +44,8 @@ EOF
 
 crontab -l
 
-if [ "$1" = 'supervisord' ]; then
-  exec /usr/bin/supervisord -n -c /etc/supervisord.conf
+if [ "$1" = 'cron' ]; then
+  exec crond -n -x sch 2>&1 | tee -a /var/log/cron.log
 fi
 
 exec "$@"

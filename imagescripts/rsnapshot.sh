@@ -28,5 +28,5 @@ done
 IFS=$SAVEIFS
 
 if [ -n "${DELAYED_START}" ]; then
-  exec sleep ${DELAYED_START}
+  sleep ${DELAYED_START}
 fi

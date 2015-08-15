@@ -35,11 +35,17 @@ if [ -n "${CRON_MONTHLY}" ]; then
   cron_rsnapshot_monthly=${CRON_MONTHLY}
 fi
 
+cronlog_command=""
+
+if [ -n "${CRON_LOG_FILE}" ]; then
+  cronlog_command=" 2>&1| tee -a "${CRON_LOG_FILE}
+fi
+
 crontab <<EOF
-${cron_rsnapshot_hourly} rsnapshot hourly
-${cron_rsnapshot_daily} rsnapshot daily
-${cron_rsnapshot_weekly} rsnapshot weekly
-${cron_rsnapshot_monthly} rsnapshot monthly
+${cron_rsnapshot_hourly} /usr/bin/rsnapshot hourly ${cronlog_command}
+${cron_rsnapshot_daily} /usr/bin/rsnapshot daily ${cronlog_command}
+${cron_rsnapshot_weekly} /usr/bin/rsnapshot weekly ${cronlog_command}
+${cron_rsnapshot_monthly} /usr/bin/rsnapshot monthly ${cronlog_command}
 EOF
 
 crontab -l

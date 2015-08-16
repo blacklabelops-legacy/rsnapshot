@@ -11,25 +11,25 @@ set -e
 
 source /opt/rsnapshot/rsnapshot.sh
 
-cron_rsnapshot_hourly="@hourly"
+cron_rsnapshot_hourly="20 * * * *"
 
 if [ -n "${CRON_HOURLY}" ]; then
   cron_rsnapshot_hourly=${CRON_HOURLY}
 fi
 
-cron_rsnapshot_daily="@daily"
+cron_rsnapshot_daily="30 1 * * *"
 
 if [ -n "${CRON_DAILY}" ]; then
   cron_rsnapshot_daily=${CRON_DAILY}
 fi
 
-cron_rsnapshot_weekly="@weekly"
+cron_rsnapshot_weekly="40 2 * * 5"
 
 if [ -n "${CRON_WEEKLY}" ]; then
   cron_rsnapshot_weekly=${CRON_WEEKLY}
 fi
 
-cron_rsnapshot_monthly="@monthly"
+cron_rsnapshot_monthly="50 3 1 * *"
 
 if [ -n "${CRON_MONTHLY}" ]; then
   cron_rsnapshot_monthly=${CRON_MONTHLY}

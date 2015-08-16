@@ -35,10 +35,16 @@ if [ -n "${CRON_MONTHLY}" ]; then
   cron_rsnapshot_monthly=${CRON_MONTHLY}
 fi
 
+cron_debug="sch"
+
+if [ -n "${CRON_DEBUG}" ]; then
+  cron_debug=${CRON_DEBUG}
+fi
+
 cronlog_command=""
 
 if [ -n "${CRON_LOG_FILE}" ]; then
-  cronlog_command=" 2>&1| tee -a "${CRON_LOG_FILE}
+  cronlog_command=" 2>&1 | tee -a "${CRON_LOG_FILE}
 fi
 
 crontab <<EOF
@@ -58,7 +64,7 @@ if [ -n "${LOG_FILE}" ]; then
 fi
 
 if [ "$1" = 'cron' ]; then
-  croncommand="crond -n -x sch"${log_command}
+  croncommand="crond -n -x "${cron_debug}${log_command}
   bash -c "${croncommand}"
 fi
 

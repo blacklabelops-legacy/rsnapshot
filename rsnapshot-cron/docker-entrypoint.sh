@@ -9,6 +9,26 @@
 
 set -e
 
+syslogger_tag=""
+
+if [ -n "${SYSLOGGER_TAG}" ]; then
+  syslogger_tag=" -t "${SYSLOGGER_TAG}
+fi
+
+syslogger_command=""
+
+if [ -n "${SYSLOGGER}" ]; then
+  syslogger_command="logger "${syslogger_tag}
+fi
+
+function output()
+{
+  if [ -n "${SYSLOGGER}" ]; then
+    logger ${syslogger_tag} "$@"
+  fi
+  echo "$@"
+}
+
 source /opt/rsnapshot/rsnapshot.sh
 
 cron_rsnapshot_hourly="20 * * * *"
@@ -35,16 +55,14 @@ if [ -n "${CRON_MONTHLY}" ]; then
   cron_rsnapshot_monthly=${CRON_MONTHLY}
 fi
 
-cron_debug="sch"
-
-if [ -n "${CRON_DEBUG}" ]; then
-  cron_debug=${CRON_DEBUG}
-fi
-
 cronlog_command=""
 
-if [ -n "${CRON_LOG_FILE}" ]; then
-  cronlog_command=" 2>&1 | tee -a "${CRON_LOG_FILE}
+if [ -n "${LOGROTATE_LOGFILE}" ] && [ ! -n "${SYSLOGGER}"]; then
+  cronlog_command=" 2>&1 | tee -a "${logrotate_cronlogfile}${LOGROTATE_LOGFILE}
+else
+  if [ -n "${SYSLOGGER}" ]; then
+    cronlog_command=" 2>&1 | "${syslogger_command}
+  fi
 fi
 
 crontab <<EOF
@@ -57,14 +75,27 @@ EOF
 
 crontab -l
 
+# ----- Cron Start ------
+
 log_command=""
 
-if [ -n "${LOG_FILE}" ]; then
-  log_command=" 2>&1 | tee -a "${LOG_FILE}
+if [ -n "${LOG_FILE}" ] && [ ! -n "${SYSLOGGER}"]; then
+ log_command=" 2>&1 | tee -a "${LOG_FILE}
+ touch ${LOG_FILE}
+else
+  if [ -n "${SYSLOGGER}" ]; then
+    log_command=" 2>&1 | "${syslogger_command}
+  fi
+fi
+
+cron_debug=""
+
+if [ -n "${CRON_DEBUG}" ]; then
+  cron_debug=" -x "${CRON_DEBUG}
 fi
 
 if [ "$1" = 'cron' ]; then
-  croncommand="crond -n -x "${cron_debug}${log_command}
+  croncommand="crond -n"${cron_debug}${log_command}
   bash -c "${croncommand}"
 fi
 

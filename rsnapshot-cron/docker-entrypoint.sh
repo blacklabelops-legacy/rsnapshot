@@ -31,7 +31,7 @@ function output()
 
 source /opt/rsnapshot/rsnapshot.sh
 
-cron_rsnapshot_hourly="20 * * * *"
+cron_rsnapshot_hourly="20 3,7,11,15,19,23 * * *"
 
 if [ -n "${CRON_HOURLY}" ]; then
   cron_rsnapshot_hourly=${CRON_HOURLY}
@@ -49,7 +49,7 @@ if [ -n "${CRON_WEEKLY}" ]; then
   cron_rsnapshot_weekly=${CRON_WEEKLY}
 fi
 
-cron_rsnapshot_monthly="50 3 1 * *"
+cron_rsnapshot_monthly="50 4 1 * *"
 
 if [ -n "${CRON_MONTHLY}" ]; then
   cron_rsnapshot_monthly=${CRON_MONTHLY}

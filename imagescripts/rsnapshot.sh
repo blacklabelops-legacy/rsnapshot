@@ -6,6 +6,34 @@ set -e
 
 cp /opt/rsnapshot/rsnapshot.conf /etc/rsnapshot.conf
 
+syslogger_tag=""
+
+if [ -n "${SYSLOGGER_TAG}" ]; then
+  syslogger_tag=" -t "${SYSLOGGER_TAG}
+fi
+
+syslogger_command=""
+
+if [ -n "${SYSLOGGER}" ]; then
+  syslogger_command="/usr/bin/logger "${syslogger_tag}
+fi
+
+function output()
+{
+  if [ -n "${SYSLOGGER}" ]; then
+    logger ${syslogger_tag} "$@"
+  fi
+  echo "$@"
+}
+
+if [ -n "${LOG_FILE}" ] && [ ! -n "${SYSLOGGER}"]; then
+  echo -e logfile'\t'$LOG_FILE >> /etc/rsnapshot.conf
+else
+  if [ -n "${SYSLOGGER}" ]; then
+    echo -e cmd_logger'\t'$syslogger_command >> /etc/rsnapshot.conf
+  fi
+fi
+
 backup_interval="hourly"
 
 if [ -n "${BACKUP_INTERVAL}" ]; then

@@ -30,7 +30,8 @@ if [ -n "${LOG_FILE}" ] && [ ! -n "${SYSLOGGER}"]; then
   echo -e logfile'\t'$LOG_FILE >> /etc/rsnapshot.conf
 else
   if [ -n "${SYSLOGGER}" ]; then
-    echo -e cmd_logger'\t'$syslogger_command >> /etc/rsnapshot.conf
+    syslogger_command_tab=$(sed -e 's/ [ ]*/\t/g' <<< $syslogger_command )
+    echo -e cmd_logger'\t'$syslogger_command_tab >> /etc/rsnapshot.conf
   fi
 fi
 

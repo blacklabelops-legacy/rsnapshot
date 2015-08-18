@@ -6,16 +6,16 @@ set -e
 
 cp /opt/rsnapshot/rsnapshot.conf /etc/rsnapshot.conf
 
-syslogger_tag=""
+syslogger_conf_tag=""
 
 if [ -n "${SYSLOGGER_TAG}" ]; then
-  syslogger_tag="\t-t\t"${SYSLOGGER_TAG}
+  syslogger_conf_tag='\t'"-t"'\t'${SYSLOGGER_TAG}
 fi
 
-syslogger_command=""
+syslogger_conf_command=""
 
 if [ -n "${SYSLOGGER}" ]; then
-  syslogger_command="/usr/bin/logger"${syslogger_tag}
+  syslogger_conf_command="/usr/bin/logger"${syslogger_conf_tag}
 fi
 
 function output()
@@ -30,7 +30,7 @@ if [ -n "${LOG_FILE}" ] && [ ! -n "${SYSLOGGER}"]; then
   echo -e logfile'\t'$LOG_FILE >> /etc/rsnapshot.conf
 else
   if [ -n "${SYSLOGGER}" ]; then
-    echo -e cmd_logger'\t'$syslogger_command >> /etc/rsnapshot.conf
+    echo -e cmd_logger'\t'$syslogger_conf_command >> /etc/rsnapshot.conf
   fi
 fi
 

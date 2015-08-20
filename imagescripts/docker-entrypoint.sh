@@ -16,7 +16,7 @@ if [ -n "${SYSLOGGER}" ]; then
   syslogger_command="logger "${syslogger_tag}
 fi
 
-source /opt/rsnapshot/rsnapshot.sh
+source /usr/bin/rsnapshot.d/rsnapshot.sh
 
 if [ "$1" = 'rsnapshot' ]; then
   exec rsnapshot $backup_interval

@@ -4,7 +4,7 @@
 
 set -e
 
-cp /opt/rsnapshot/rsnapshot.conf /etc/rsnapshot.conf
+cp /usr/bin/rsnapshot.d/rsnapshot.conf /etc/rsnapshot.conf
 
 syslogger_conf_tag=""
 

@@ -18,7 +18,7 @@ In short, this container can backup volumes and manage incremental backups of ru
 Example container:
 
 ~~~~
-docker run -d -p 8090:8080 --name jenkins_jenkins_1 blacklabelops/jenkins
+docker run -d -p 8090:8080 --name jenkins blacklabelops/jenkins
 ~~~~
 
 > The Jenkins container has a default docker volume under /jenkins
@@ -28,9 +28,9 @@ linux system as you can loose file permissions and loose the ability to restore:
 
 ~~~~
 $ docker run -d \
-  --volumes-from jenkins_jenkins_1 \
+  --volumes-from jenkins \
 	-v $(pwd)/snapshots/:/snapshots \
-	-e "BACKUP_DIRECTORIES=/jenkins/ jenkins_jenkins_1/" \
+	-e "BACKUP_DIRECTORIES=/jenkins/ jenkins/" \
 	blacklabelops/rsnapshot
 ~~~~
 

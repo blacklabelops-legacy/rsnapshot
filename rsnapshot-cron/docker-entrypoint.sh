@@ -29,7 +29,7 @@ function output()
   echo "$@"
 }
 
-source /opt/rsnapshot/rsnapshot.sh
+source /usr/bin/rsnapshot.d/rsnapshot.sh
 
 cron_rsnapshot_hourly="20 3,7,11,15,19,23 * * *"
 
@@ -67,10 +67,10 @@ fi
 
 crontab <<EOF
 PATH=/opt/rsnapshot:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-${cron_rsnapshot_hourly} /usr/bin/rsnapshot hourly ${cronlog_command}
-${cron_rsnapshot_daily} /usr/bin/rsnapshot daily ${cronlog_command}
-${cron_rsnapshot_weekly} /usr/bin/rsnapshot weekly ${cronlog_command}
-${cron_rsnapshot_monthly} /usr/bin/rsnapshot monthly ${cronlog_command}
+${cron_rsnapshot_hourly} runuser rsnapshot -c '/usr/bin/rsnapshot hourly ${cronlog_command}'
+${cron_rsnapshot_daily} runuser rsnapshot -c '/usr/bin/rsnapshot daily ${cronlog_command}'
+${cron_rsnapshot_weekly} runuser rsnapshot -c '/usr/bin/rsnapshot weekly ${cronlog_command}'
+${cron_rsnapshot_monthly} runuser rsnapshot -c '/usr/bin/rsnapshot monthly ${cronlog_command}'
 EOF
 
 crontab -l

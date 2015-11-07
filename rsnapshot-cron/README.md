@@ -1,6 +1,8 @@
 Rsnapshot is a wrapper around rsync and rsnapshot is strong when it comes to manage The
 rotation of daily, weekly and monthly snapshots.
 
+Leave a message and ask questions on Hipchat: [blacklabelops/hipchat](https://www.hipchat.com/geogBFvEM)
+
 This container offers rsnapshot functionality dockerized, parameterized and demonized. It is a side-car container for creating and managing container backups using rsnapshot. This container can backup
 any arbitrary amount of containers and directories. Just hook up some containers and define your
 backup volumes.

@@ -1,8 +1,6 @@
 FROM blacklabelops/rsnapshot
 MAINTAINER Steffen Bleul <blacklabelops@itbleul.de>
 
-USER root
-
 # install toolset
 RUN yum install -y \
     vi \

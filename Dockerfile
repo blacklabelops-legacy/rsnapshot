@@ -15,7 +15,7 @@ RUN yum install -y epel-release && \
 ENV BACKUP_INTERVAL= \
     BACKUP_DIRECTORIES= \
     DELAYED_START= \
-    VOLUME_DIRECTORY=/snapshots \
+    VOLUME_DIRECTORY=/snapshots
 
 ENTRYPOINT ["/usr/bin/rsnapshot.d/docker-entrypoint.sh"]
 VOLUME ["${VOLUME_DIRECTORY}"]

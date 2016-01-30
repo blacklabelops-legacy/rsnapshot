@@ -1,13 +1,14 @@
-Rsnapshot is a wrapper around rsync and rsnapshot is strong when it comes to manage The
-rotation of daily, weekly and monthly snapshots.
+# Blacklabelops Rsnapshotd
+
+[![Circle CI](https://circleci.com/gh/blacklabelops/rsnapshot/tree/master.svg?style=shield)](https://circleci.com/gh/blacklabelops/rsnapshot/tree/master) [![Docker Stars](https://img.shields.io/docker/stars/blacklabelops/rsnapshotd.svg)](https://hub.docker.com/r/blacklabelops/rsnapshotd/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacklabelops/rsnapshotd.svg)](https://hub.docker.com/r/blacklabelops/rsnapshotd/)
+
+> blacklabelops/rsnapshotd:1.3.1
 
 Leave a message and ask questions on Hipchat: [blacklabelops/hipchat](https://www.hipchat.com/geogBFvEM)
 
 This container offers rsnapshot functionality dockerized, parameterized and demonized. It is a side-car container for creating and managing container backups using rsnapshot. This container can backup
 any arbitrary amount of containers and directories. Just hook up some containers and define your
 backup volumes.
-
-The one-shot backup container for immediate backups without cron schedule can be found here: [blacklabelops/rsnapshot](../README.md)
 
 # Make It Short
 

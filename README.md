@@ -1,3 +1,9 @@
+# Blacklabelops Rsnapshot
+
+[![Circle CI](https://circleci.com/gh/blacklabelops/rsnapshot/tree/master.svg?style=shield)](https://circleci.com/gh/blacklabelops/rsnapshot/tree/master) [![Docker Stars](https://img.shields.io/docker/stars/blacklabelops/rsnapshot.svg)](https://hub.docker.com/r/blacklabelops/rsnapshot/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacklabelops/rsnapshot.svg)](https://hub.docker.com/r/blacklabelops/rsnapshot/)
+
+> Release: blacklabelops/rsnapshot:1.3.1
+
 This is a side-car container for creating and managing container backups using rsnapshot. This container can backup
 any arbitrary amount of containers and directories. Just hook up some containers and define your
 backup volumes.
@@ -6,8 +12,7 @@ Leave a message and ask questions on Hipchat: [blacklabelops/hipchat](https://ww
 
 Rsnapshot is a wrapper around rsync and rsnapshot is strong when it comes to manage The
 rotation of daily, weekly and monthly snapshots. This image is a the base container with
-rsnapshot functionality dockerized and parameterized. I am working
-on a cron version that fully manages backups of cloud containers.
+rsnapshot functionality dockerized and parameterized.
 
 The cron scheduled backup container can be found here: [blacklabelops/rsnapshotd](./rsnapshot-cron/README.md)
 
@@ -185,7 +190,7 @@ $ docker run \
 
 > Represents the default setup: hourly=4, daily=7, weekly=4, monthly=12.
 
-## Vagrant
+# Vagrant
 
 Vagrant is fabulous tool for pulling and spinning up virtual machines like docker with containers. I can configure my development and test environment and simply pull it online. And so can you! Install Vagrant and Virtualbox and spin it up. Change into the project folder and build the project on the spot!
 
@@ -205,7 +210,7 @@ First install:
 * [Vagrant](https://www.vagrantup.com/)
 * [Virtualbox](https://www.virtualbox.org/)
 
-## References
+# References
 
 * [rnsapshot Homepage](http://rsnapshot.org/)
 * [Docker Homepage](https://www.docker.com/)

@@ -1,4 +1,4 @@
-FROM blacklabelops/centos
+FROM blacklabelops/centos:7.2.1511
 MAINTAINER Steffen Bleul <blacklabelops@itbleul.de>
 
 # install rsnapshot
@@ -6,7 +6,7 @@ COPY configuration/rsnapshot.conf /etc/rsnapshot.conf
 COPY imagescripts/docker-entrypoint.sh /usr/bin/rsnapshot.d/docker-entrypoint.sh
 COPY imagescripts/rsnapshot.sh /usr/bin/rsnapshot.d/rsnapshot.sh
 RUN yum install -y epel-release && \
-    yum install -y rsnapshot && \
+    yum install -y rsnapshot-1.3.1 && \
     yum clean all && rm -rf /var/cache/yum/* && \
     mkdir -p /usr/bin/rsnapshot.d && \
     cp /etc/rsnapshot.conf /usr/bin/rsnapshot.d/rsnapshot.conf && \

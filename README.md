@@ -158,6 +158,33 @@ $ docker run \
 	blacklabelops/rsnapshot
 ~~~~
 
+## How many backups do you want?
+
+The following environment variables define the number of backups for each category:
+
+* hourly: RSNAPSHOT_HOURLY_TIMES
+* daily: RSNAPSHOT_DAILY_TIMES
+* weekly: RSNAPSHOT_WEEKLY_TIMES
+* monthly: RSNAPSHOT_MONTHLY_TIMES
+
+Example:
+
+~~~~
+$ docker run \
+  --volumes-from jenkins_jenkins_1 \
+  --volumes-from jira_jira_1 \
+  --rm \
+	-v $(pwd)/snapshots/:/snapshots \
+	-e "BACKUP_DIRECTORIES=/jenkins/ jenkins_1/;/opt/atlassian-home/ jira_1/" \
+  -e "RSNAPSHOT_HOURLY_TIMES=4" \
+  -e "RSNAPSHOT_DAILY_TIMES=7" \
+  -e "RSNAPSHOT_WEEKLY_TIMES=4" \
+  -e "RSNAPSHOT_MONTHLY_TIMES=12" \
+	blacklabelops/rsnapshot
+~~~~
+
+> Represents the default setup: hourly=4, daily=7, weekly=4, monthly=12.
+
 ## Vagrant
 
 Vagrant is fabulous tool for pulling and spinning up virtual machines like docker with containers. I can configure my development and test environment and simply pull it online. And so can you! Install Vagrant and Virtualbox and spin it up. Change into the project folder and build the project on the spot!

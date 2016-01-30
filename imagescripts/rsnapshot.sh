@@ -1,10 +1,42 @@
-#!/bin/bash -x
+#!/bin/bash
 #
 # A helper script for ENTRYPOINT.
 
 set -e
 
 cp /usr/bin/rsnapshot.d/rsnapshot.conf /etc/rsnapshot.conf
+
+hourly_times="4"
+
+if [ -n "${RSNAPSHOT_HOURLY_TIMES}" ]; then
+  hourly_times=$RSNAPSHOT_HOURLY_TIMES
+fi
+
+echo -e interval'\t'hourly'\t'$hourly_times >> /etc/rsnapshot.conf
+
+daily_times="7"
+
+if [ -n "${RSNAPSHOT_DAILY_TIMES}" ]; then
+  daily_times=$RSNAPSHOT_DAILY_TIMES
+fi
+
+echo -e interval'\t'daily'\t'$daily_times >> /etc/rsnapshot.conf
+
+weekly_times="4"
+
+if [ -n "${RSNAPSHOT_WEEKLY_TIMES}" ]; then
+  weekly_times=$RSNAPSHOT_WEEKLY_TIMES
+fi
+
+echo -e interval'\t'weekly'\t'$weekly_times >> /etc/rsnapshot.conf
+
+monthly_times="12"
+
+if [ -n "${RSNAPSHOT_MONTHLY_TIMES}" ]; then
+  monthly_times=$RSNAPSHOT_MONTHLY_TIMES
+fi
+
+echo -e interval'\t'monthly'\t'$monthly_times >> /etc/rsnapshot.conf
 
 syslogger_conf_tag=""
 

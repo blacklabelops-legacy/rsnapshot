@@ -1,5 +1,7 @@
 # Blacklabelops Rsnapshotd
 
+ATTENTION: This image has been migrated to Jobber and Jobber has different cron syntax! The cron schedule has 6 digits, one more than cron, please migrate!
+
 [![Circle CI](https://circleci.com/gh/blacklabelops/rsnapshot/tree/master.svg?style=shield)](https://circleci.com/gh/blacklabelops/rsnapshot/tree/master) [![Docker Stars](https://img.shields.io/docker/stars/blacklabelops/rsnapshotd.svg)](https://hub.docker.com/r/blacklabelops/rsnapshotd/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacklabelops/rsnapshotd.svg)](https://hub.docker.com/r/blacklabelops/rsnapshotd/)
 
 > blacklabelops/rsnapshotd:1.3.1
@@ -55,15 +57,6 @@ nodes							war
 
 # Setting Cron Schedule
 
-The demon runs the following cron schedule for rsnapshot by default:
-
-* Hourly backups: @hourly
-* Daily backups: @daily
-* Weekly backups: @weekly
-* Monthly backups: @monthly
-
-The number of managed backups can be found here: [rsnapshot.conf](../configuration/rsnapshot.conf)
-
 You can override the schedule by using the following environment variables. Remember that they
 have to contain valid cron syntax. ([Wikipedia Documentation](https://en.wikipedia.org/wiki/Cron))
 
@@ -80,10 +73,10 @@ $ docker run -d \
   --name backupdemon \
   -v $(pwd)/snapshots/:/snapshots \
 	-e "BACKUP_DIRECTORIES=/jenkins/ jenkins_jenkins_1/" \
-  -e "CRON_HOURLY=20 1 * * *" \
-  -e "CRON_DAILY=0 2 1 * *" \
-  -e "CRON_WEEKLY=0 1 * * Mon" \
-  -e "CRON_MONTHLY=0 3 20 * *" \
+  -e "CRON_HOURLY=0 20 1 * * *" \
+  -e "CRON_DAILY=0 0 2 1 * *" \
+  -e "CRON_WEEKLY=0 0 1 * * Mon" \
+  -e "CRON_MONTHLY=0 0 3 20 * *" \
 	blacklabelops/rsnapshotd
 ~~~~
 
@@ -124,7 +117,7 @@ $ docker run -d \
   -v $(pwd)/snapshots/:/snapshots \
   -e "LOG_FILE=/rsnapshotlogs/rsnapshotd.log" \
   -e "BACKUP_DIRECTORIES=/jenkins/ jenkins_jenkins_1/" \
-  -e "CRON_HOURLY=* * * * *" \
+  -e "CRON_HOURLY=0 * * * * *" \
   blacklabelops/rsnapshotd
 ~~~~
 

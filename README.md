@@ -1,8 +1,6 @@
 # Blacklabelops Rsnapshot
 
-[![Circle CI](https://circleci.com/gh/blacklabelops/rsnapshot/tree/master.svg?style=shield)](https://circleci.com/gh/blacklabelops/rsnapshot/tree/master) [![Docker Stars](https://img.shields.io/docker/stars/blacklabelops/rsnapshot.svg)](https://hub.docker.com/r/blacklabelops/rsnapshot/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacklabelops/rsnapshot.svg)](https://hub.docker.com/r/blacklabelops/rsnapshot/)
-
-> Release: blacklabelops/rsnapshot:1.3.1
+[![Docker Stars](https://img.shields.io/docker/stars/blacklabelops/rsnapshot.svg)](https://hub.docker.com/r/blacklabelops/rsnapshot/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacklabelops/rsnapshot.svg)](https://hub.docker.com/r/blacklabelops/rsnapshot/)
 
 This is a side-car container for creating and managing container backups using rsnapshot. This container can backup
 any arbitrary amount of containers and directories. Just hook up some containers and define your

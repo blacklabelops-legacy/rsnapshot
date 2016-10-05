@@ -2,9 +2,7 @@
 
 ATTENTION: This image has been migrated to Jobber and Jobber has different cron syntax! The cron schedule has 6 digits, one more than cron, please migrate!
 
-[![Circle CI](https://circleci.com/gh/blacklabelops/rsnapshot/tree/master.svg?style=shield)](https://circleci.com/gh/blacklabelops/rsnapshot/tree/master) [![Docker Stars](https://img.shields.io/docker/stars/blacklabelops/rsnapshotd.svg)](https://hub.docker.com/r/blacklabelops/rsnapshotd/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacklabelops/rsnapshotd.svg)](https://hub.docker.com/r/blacklabelops/rsnapshotd/)
-
-> blacklabelops/rsnapshotd:1.3.1
+[![Docker Stars](https://img.shields.io/docker/stars/blacklabelops/rsnapshotd.svg)](https://hub.docker.com/r/blacklabelops/rsnapshotd/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacklabelops/rsnapshotd.svg)](https://hub.docker.com/r/blacklabelops/rsnapshotd/)
 
 Leave a message and ask questions on Hipchat: [blacklabelops/hipchat](https://www.hipchat.com/geogBFvEM)
 
@@ -161,6 +159,6 @@ First install:
 
 ## References
 
-* [rnsapshot Homepage](http://rsnapshot.org/)
+* [rsnapshot Homepage](http://rsnapshot.org/)
 * [Docker Homepage](https://www.docker.com/)
 * [Docker Userguide](https://docs.docker.com/userguide/)

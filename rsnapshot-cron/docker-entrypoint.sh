@@ -13,7 +13,7 @@ if [ "$1" = 'rsnapshotd' ]; then
 
   source /usr/bin/rsnapshot.d/rsnapshot.sh
 
-  cron_rsnapshot_hourly="0 20 */4 * * *"
+  cron_rsnapshot_hourly="0 20 * * * *"
 
   if [ -n "${CRON_HOURLY}" ]; then
     cron_rsnapshot_hourly=${CRON_HOURLY}
@@ -79,7 +79,7 @@ _EOF_
 
   # ----- Jobber Cron Start ------
 
-  /opt/jobber/lib/bin/jobberd
+  exec jobberd
 fi
 
 exec "$@"

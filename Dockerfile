@@ -1,17 +1,22 @@
-FROM blacklabelops/centos:7.2.1511
+FROM blacklabelops/alpine
 MAINTAINER Steffen Bleul <blacklabelops@itbleul.de>
 
-# install rsnapshot
-COPY configuration/rsnapshot.conf /etc/rsnapshot.conf
-COPY imagescripts/docker-entrypoint.sh /usr/bin/rsnapshot.d/docker-entrypoint.sh
-COPY imagescripts/rsnapshot.sh /usr/bin/rsnapshot.d/rsnapshot.sh
+# rsnapshot version (e.g. 1.4.2-r0)
+ARG RSNAPSHOT_VERSION=latest
 
-RUN yum install -y epel-release && \
-    yum install -y rsnapshot-1.3.1 && \
-    yum clean all && rm -rf /var/cache/yum/* && \
+# install rsnapshot
+COPY configuration/rsnapshot.conf.default /etc/rsnapshot.conf
+COPY imagescripts /usr/bin/rsnapshot.d
+
+RUN apk upgrade --update && \
+    if  [ "${RSNAPSHOT_VERSION}" = "latest" ]; \
+      then apk add rsnapshot ; \
+      else apk add "rsnapshot=${RSNAPSHOT_VERSION}" ; \
+    fi && \
     mkdir -p /usr/bin/rsnapshot.d && \
     cp /etc/rsnapshot.conf /usr/bin/rsnapshot.d/rsnapshot.conf && \
-    chmod ug+x /usr/bin/rsnapshot.d/*.sh
+    chmod ug+x /usr/bin/rsnapshot.d/*.sh && \
+    rm -rf /var/cache/apk/* && rm -rf /tmp/*
 
 ENV BACKUP_INTERVAL= \
     BACKUP_DIRECTORIES= \

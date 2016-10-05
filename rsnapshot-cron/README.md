@@ -73,9 +73,9 @@ $ docker run -d \
   --name backupdemon \
   -v $(pwd)/snapshots/:/snapshots \
 	-e "BACKUP_DIRECTORIES=/jenkins/ jenkins_jenkins_1/" \
-  -e "CRON_HOURLY=0 20 1 * * *" \
+  -e "CRON_HOURLY=0 20 * * * *" \
   -e "CRON_DAILY=0 0 2 1 * *" \
-  -e "CRON_WEEKLY=0 0 1 * * Mon" \
+  -e "CRON_WEEKLY=0 0 1 * * 1" \
   -e "CRON_MONTHLY=0 0 3 20 * *" \
 	blacklabelops/rsnapshotd
 ~~~~
@@ -117,7 +117,7 @@ $ docker run -d \
   -v $(pwd)/snapshots/:/snapshots \
   -e "LOG_FILE=/rsnapshotlogs/rsnapshotd.log" \
   -e "BACKUP_DIRECTORIES=/jenkins/ jenkins_jenkins_1/" \
-  -e "CRON_HOURLY=0 * * * * *" \
+  -e "CRON_HOURLY=0 15 * * * *" \
   blacklabelops/rsnapshotd
 ~~~~
 

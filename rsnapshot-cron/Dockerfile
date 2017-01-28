@@ -56,6 +56,7 @@ ENV PATH=$PATH:/opt/jobber/lib/bin \
     CRON_MONTHLY=
 
 COPY docker-entrypoint.sh /usr/bin/cron.d/docker-entrypoint.sh
+COPY rsnapshot.sh /usr/bin/rsnapshot.d/rsnapshot.sh
 ENTRYPOINT ["/usr/bin/cron.d/docker-entrypoint.sh"]
 VOLUME ["${VOLUME_DIRECTORY}"]
 CMD ["rsnapshotd"]

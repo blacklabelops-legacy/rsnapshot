@@ -43,7 +43,7 @@ if [ "$1" = 'rsnapshotd' ]; then
 ---
 _EOF_
   
-  [ "$hourly_times" -gt 0 ] && cat > ${configfile} <<_EOF_
+  [ "$hourly_times" -gt 0 ] && cat >> ${configfile} <<_EOF_
 - name: Hourly
   cmd: /usr/bin/rsnapshot hourly
   time: '${cron_rsnapshot_hourly}'
@@ -53,7 +53,7 @@ _EOF_
 
 _EOF_
   
-  [ "$daily_times" -gt 0 ] && cat > ${configfile} <<_EOF_
+  [ "$daily_times" -gt 0 ] && cat >> ${configfile} <<_EOF_
 - name: Daily
   cmd: /usr/bin/rsnapshot daily
   time: '${cron_rsnapshot_daily}'
@@ -63,7 +63,7 @@ _EOF_
 
 _EOF_
   
-  [ "$weekly_times" -gt 0 ] && cat > ${configfile} <<_EOF_
+  [ "$weekly_times" -gt 0 ] && cat >> ${configfile} <<_EOF_
 - name: Weekly
   cmd: /usr/bin/rsnapshot weekly
   time: '${cron_rsnapshot_weekly}'
@@ -73,7 +73,7 @@ _EOF_
 
 _EOF_
   
-  [ "$monthly_times" -gt 0 ] && cat > ${configfile} <<_EOF_
+  [ "$monthly_times" -gt 0 ] && cat >> ${configfile} <<_EOF_
 - name: Monthly
   cmd: /usr/bin/rsnapshot monthly
   time: '${cron_rsnapshot_monthly}'

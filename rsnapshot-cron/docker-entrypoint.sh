@@ -1,10 +1,6 @@
 #!/bin/bash -x
 #
 # A helper script for ENTRYPOINT.
-
-#!/bin/bash -x
-#
-# A helper script for ENTRYPOINT.
 #
 
 set -e
@@ -45,6 +41,9 @@ if [ "$1" = 'rsnapshotd' ]; then
 
   cat > ${configfile} <<_EOF_
 ---
+_EOF_
+  
+  [ "$hourly_times" -gt 0 ] && cat > ${configfile} <<_EOF_
 - name: Hourly
   cmd: /usr/bin/rsnapshot hourly
   time: '${cron_rsnapshot_hourly}'
@@ -52,6 +51,9 @@ if [ "$1" = 'rsnapshotd' ]; then
   notifyOnError: false
   notifyOnFailure: false
 
+_EOF_
+  
+  [ "$daily_times" -gt 0 ] && cat > ${configfile} <<_EOF_
 - name: Daily
   cmd: /usr/bin/rsnapshot daily
   time: '${cron_rsnapshot_daily}'
@@ -59,6 +61,9 @@ if [ "$1" = 'rsnapshotd' ]; then
   notifyOnError: false
   notifyOnFailure: false
 
+_EOF_
+  
+  [ "$weekly_times" -gt 0 ] && cat > ${configfile} <<_EOF_
 - name: Weekly
   cmd: /usr/bin/rsnapshot weekly
   time: '${cron_rsnapshot_weekly}'
@@ -66,6 +71,9 @@ if [ "$1" = 'rsnapshotd' ]; then
   notifyOnError: false
   notifyOnFailure: false
 
+_EOF_
+  
+  [ "$monthly_times" -gt 0 ] && cat > ${configfile} <<_EOF_
 - name: Monthly
   cmd: /usr/bin/rsnapshot monthly
   time: '${cron_rsnapshot_monthly}'

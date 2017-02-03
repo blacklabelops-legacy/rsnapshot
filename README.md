@@ -6,8 +6,6 @@ This is a side-car container for creating and managing container backups using r
 any arbitrary amount of containers and directories. Just hook up some containers and define your
 backup volumes.
 
-Leave a message and ask questions on Hipchat: [blacklabelops/hipchat](https://www.hipchat.com/geogBFvEM)
-
 Rsnapshot is a wrapper around rsync and rsnapshot is strong when it comes to manage The
 rotation of daily, weekly and monthly snapshots. This image is a the base container with
 rsnapshot functionality dockerized and parameterized.
@@ -207,6 +205,10 @@ First install:
 
 * [Vagrant](https://www.vagrantup.com/)
 * [Virtualbox](https://www.virtualbox.org/)
+
+# Support
+
+Leave a message and ask questions on Hipchat: [blacklabelops/hipchat](http://support.blacklabelops.com)
 
 # References
 

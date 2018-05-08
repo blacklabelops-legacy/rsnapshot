@@ -14,6 +14,7 @@ RUN export JOBBER_HOME=/tmp/jobber && \
     # Install tools
     apk add --update \
       go \
+      musl-dev \
       git \
       curl \
       wget \

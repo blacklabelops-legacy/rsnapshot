@@ -14,6 +14,7 @@ RUN export JOBBER_HOME=/tmp/jobber && \
     # Install tools
     apk add --update \
       go \
+      musl-dev \
       git \
       curl \
       wget \
@@ -56,6 +57,7 @@ ENV PATH=$PATH:/opt/jobber/lib/bin \
     CRON_MONTHLY=
 
 COPY docker-entrypoint.sh /usr/bin/cron.d/docker-entrypoint.sh
+COPY rsnapshot.sh /usr/bin/rsnapshot.d/rsnapshot.sh
 ENTRYPOINT ["/usr/bin/cron.d/docker-entrypoint.sh"]
 VOLUME ["${VOLUME_DIRECTORY}"]
 CMD ["rsnapshotd"]

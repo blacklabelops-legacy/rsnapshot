@@ -1,7 +1,5 @@
 # Blacklabelops Rsnapshot
 
-[![Docker Stars](https://img.shields.io/docker/stars/blacklabelops/rsnapshot.svg)](https://hub.docker.com/r/blacklabelops/rsnapshot/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacklabelops/rsnapshot.svg)](https://hub.docker.com/r/blacklabelops/rsnapshot/)
-
 This is a side-car container for creating and managing container backups using rsnapshot. This container can backup
 any arbitrary amount of containers and directories. Just hook up some containers and define your
 backup volumes.
@@ -205,10 +203,6 @@ First install:
 
 * [Vagrant](https://www.vagrantup.com/)
 * [Virtualbox](https://www.virtualbox.org/)
-
-# Support
-
-Leave a message and ask questions on Hipchat: [blacklabelops/hipchat](http://support.blacklabelops.com)
 
 # References
 
